@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useMemo, useState } from "react";
-import { getClusters } from "../api/clustersApi";
+import { getClusters } from "../api/clustersApi1";
 
 const NewsContext = createContext(null);
 
@@ -9,7 +9,7 @@ export function NewsProvider({ children }) {
   const [openClusterIds, setOpenClusterIds] = useState(
     () => new Set(["cluster-1"]),
   );
-  const clusters = useMemo(() => getClusters(), []);
+  const clusters = useMemo(() => getClusters(), []); //The calling of the server activity to getCluster is an expensive and repetitive process because it is updated every hour.
 
   const toggleCluster = (clusterId) => {
     setOpenClusterIds((current) => {
@@ -22,9 +22,9 @@ export function NewsProvider({ children }) {
 
   const value = {
     activeView,
+    setActiveView,
     clusters,
     openClusterIds,
-    setActiveView,
     toggleCluster,
   };
 

@@ -16,7 +16,7 @@ export default function SingleArticlesPage() {
           Today's Single Article Clusters
         </h1>
         <div className="font-mono text-[9px] tracking-[0.04em] text-ink-4">
-          {singleArticleClusters.length} articles / latest published first
+          {singleArticleClusters.length} articles 
         </div>
       </div>
 
