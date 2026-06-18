@@ -4,7 +4,7 @@ import ClusterArticleRow from "./ClusterArticleRow";
 
 export default function ClusterCard({ cluster }) {
   const { openClusterIds, toggleCluster } = useNews();
-  const isOpen = openClusterIds.has(cluster.id);
+  const isOpen = openClusterIds.has(cluster.id); //this is why it is not working as expected
   const articles = sortByDateDesc(
     cluster.articles,
     (article) => article.pubDate,
@@ -20,7 +20,13 @@ export default function ClusterCard({ cluster }) {
         <div className="mb-1.5 flex flex-wrap items-center gap-2 font-mono text-[8.5px] tracking-[0.04em] text-ink-4">
           <span>{getSourceSummary(cluster)}</span>
           <span className="text-rule-2">.</span>
-          <span>updated {formatRelativeDate(cluster.updatedAt)}</span>
+          <span>
+            created {formatRelativeDate(cluster.createdAt)}
+          </span>
+          <span className="text-rule-2">-</span>
+          <span>
+            updated {formatRelativeDate(cluster.updatedAt)}
+          </span>
         </div>
         <h2 className="mb-2.5 font-display text-xl font-semibold leading-tight tracking-normal text-ink md:text-[23px]">
           {cluster.title}

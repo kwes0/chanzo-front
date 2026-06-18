@@ -8,7 +8,6 @@ export function NewsProvider({ children }) {
   const [activeView, setActiveView] = useState("clusters");
   const [openClusterIds, setOpenClusterIds] = useState(() => new Set());
   const [clusters, setClusters] = useState([]);
-  // const clusters = useMemo(() => getClusters(), []); //The calling of the server activity to getCluster is an expensive and repetitive process because it is updated every hour.
 
   useEffect(() => {
     const fetch = async () => {
