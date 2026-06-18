@@ -1,15 +1,26 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useMemo, useState } from "react";
-import { getClusters } from "../api/clustersApi1";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getClusters } from "../api/clustersApi";
 
 const NewsContext = createContext(null);
 
 export function NewsProvider({ children }) {
   const [activeView, setActiveView] = useState("clusters");
-  const [openClusterIds, setOpenClusterIds] = useState(
-    () => new Set(["cluster-1"]),
-  );
-  const clusters = useMemo(() => getClusters(), []); //The calling of the server activity to getCluster is an expensive and repetitive process because it is updated every hour.
+  const [openClusterIds, setOpenClusterIds] = useState(() => new Set());
+  const [clusters, setClusters] = useState([]);
+  // const clusters = useMemo(() => getClusters(), []); //The calling of the server activity to getCluster is an expensive and repetitive process because it is updated every hour.
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const data = await getClusters();
+        setClusters(data.data);
+      } catch (e) {
+        console.error("error kwa fetch in context:", e.message);
+      }
+    };
+    fetch();
+  }, []);
 
   const toggleCluster = (clusterId) => {
     setOpenClusterIds((current) => {

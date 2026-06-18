@@ -2,7 +2,7 @@ export default function ClusterArticleRow({ article }) {
   return (
     <a
       className="grid grid-cols-1 gap-1.5 border-b border-rule px-4 py-3 text-left transition last:border-b-0 hover:bg-cream-3 sm:grid-cols-[86px_1fr_92px_18px] sm:items-center sm:gap-3 sm:px-5 sm:pl-[90px]"
-      href={article.url}
+      href={article.link} target="_blank"
     >
       <span className="w-fit rounded-[2px] border border-rule-2 bg-cream-3 px-2 py-0.5 text-center font-mono text-[8px] font-medium uppercase tracking-[0.06em] text-ink-2">
         {article.sourceName || 'Source'}

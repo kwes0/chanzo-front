@@ -1,49 +1,63 @@
 export default function SingleArticleCard({ cluster }) {
-  const article = cluster.articles[0]
+  const article = cluster.articles[0];
 
   return (
     <article className="border-b border-rule">
       <div className="block px-4 py-4 text-left transition hover:bg-cream-2 md:px-5 md:py-[18px]">
         <div className="mb-1.5 flex flex-wrap items-center gap-2 font-mono text-[8.5px] tracking-[0.04em] text-ink-4">
-          <span>{article.sourceName || 'Unknown source'}</span>
+          <span>{article.sourceName || "Unknown source"}</span>
           <span className="text-rule-2">.</span>
-          <span>published {formatRelativeDate(article.pubDate || cluster.updatedAt)}</span>
+          <span>
+            published {formatRelativeDate(article.pubDate || cluster.updatedAt)}
+          </span>
         </div>
+        <a
+          className="text-blue hover:underline"
+          href={article.link}
+          target="_blank"
+        >
+          <h2 className="mb-2.5 font-display text-xl font-semibold leading-tight tracking-normal text-ink md:text-[23px]">
+            {article.title || cluster.title}
+          </h2>
+        </a>
 
-        <h2 className="mb-2.5 font-display text-xl font-semibold leading-tight tracking-normal text-ink md:text-[23px]">
-          {article.title || cluster.title}
-        </h2>
-
-        <p className="max-w-[720px] text-[13px] leading-relaxed text-ink-3">
+        {/* <p className="max-w-[720px] text-[13px] leading-relaxed text-ink-3">
           {article.summary || 'No summary available for this article yet.'}
-        </p>
+        </p> */}
 
         <div className="mt-3 flex flex-wrap gap-2 font-mono text-[8.5px] uppercase tracking-[0.05em] text-ink-4">
-          <span>Source: {article.sourceName || 'Unknown'}</span>
+          <span>Source: {article.sourceName || "Unknown"}</span>
           <span>
-            Published:{' '}
-            {new Date(article.pubDate || cluster.updatedAt).toLocaleString('en-GB', {
-              day: 'numeric',
-              month: 'short',
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
+            Published:{" "}
+            {new Date(article.pubDate || cluster.updatedAt).toLocaleString(
+              "en-GB",
+              {
+                day: "numeric",
+                month: "short",
+                hour: "2-digit",
+                minute: "2-digit",
+              },
+            )}
           </span>
-          <a className="text-blue hover:underline" href={article.url}>
+          {/* <a
+            className="text-blue hover:underline"
+            href={article.link}
+            target="_blank"
+          >
             Open article ↗
-          </a>
+          </a> */}
         </div>
       </div>
     </article>
-  )
+  );
 }
 
 function formatRelativeDate(dateText) {
-  const value = new Date(dateText)
-  const diffMs = Date.now() - value.getTime()
-  const diffMinutes = Math.max(1, Math.round(diffMs / 60000))
-  if (diffMinutes < 60) return `${diffMinutes}m ago`
-  const diffHours = Math.round(diffMinutes / 60)
-  if (diffHours < 24) return `${diffHours}h ago`
-  return value.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+  const value = new Date(dateText);
+  const diffMs = Date.now() - value.getTime();
+  const diffMinutes = Math.max(1, Math.round(diffMs / 60000));
+  if (diffMinutes < 60) return `${diffMinutes}m ago`;
+  const diffHours = Math.round(diffMinutes / 60);
+  if (diffHours < 24) return `${diffHours}h ago`;
+  return value.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
