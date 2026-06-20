@@ -13,7 +13,7 @@ export default function ClustersPage() {
     <main className="mx-auto max-w-[980px] border-x border-rule bg-cream">
       <PageHeader
         count={multiArticleClusters.length}
-        title="This week's Clusters"
+        title="This Week's Clusters"
         unit="clusters"
       />
 
