@@ -4,6 +4,7 @@ import { useNews } from "../hooks/NewsContext";
 
 export default function SingleArticlesPage() {
   const { clusters } = useNews();
+  // const kenyaTime = new Date().toLocaleString();
   const singleArticleClusters = sortByDateDesc(
     clusters.filter((cluster) => cluster.articles.length === 1),
     (cluster) => cluster.articles[0]?.pubDate || cluster.updatedAt,
@@ -16,7 +17,7 @@ export default function SingleArticlesPage() {
           Today's Article
         </h1>
         <div className="font-mono text-[9px] tracking-[0.04em] text-ink-4">
-          {singleArticleClusters.length} articles 
+          {singleArticleClusters.length} articles
         </div>
       </div>
 

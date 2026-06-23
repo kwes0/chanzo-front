@@ -14,12 +14,12 @@ const baseUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:3003";
 //   }
 // };
 
-const getClusters = async () => {
+const getThisWeeksClusters = async () => {
   // return clusters;
-  const allClusteredURL = `${baseUrl}/ropie/allClustered`;
+  const weekClusterEndpoint = `${baseUrl}/ropie/weeksClusters`;
   //Handle this in a try catch
   try {
-    const response = await axios.get(allClusteredURL);
+    const response = await axios.get(weekClusterEndpoint);
     //const response = await axios.get(allClusteredURL, {params: {view, page, limit}})
     console.log(response.data);
     return response.data;
@@ -27,6 +27,8 @@ const getClusters = async () => {
     console.error("Kuna error kwa kuget clusters: ", e.message);
   }
 };
+
+// const getDailyArticles = async () => {};
 
 const sortByDateDesc = (items, getDate) => {
   return [...items].sort(
@@ -44,4 +46,9 @@ const getSourceSummary = (cluster) => {
   return uniqueSources[0] || "Unknown source";
 };
 
-export { getClusters, sortByDateDesc, getSourceSummary };
+export {
+  getThisWeeksClusters,
+  // getDailyArticles,
+  sortByDateDesc,
+  getSourceSummary,
+};

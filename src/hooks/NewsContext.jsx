@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { getClusters } from "../api/clustersApi";
+import { getThisWeeksClusters } from "../api/clustersApi";
 
 const NewsContext = createContext(null);
 
@@ -12,7 +12,7 @@ export function NewsProvider({ children }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getClusters();
+        const data = await getThisWeeksClusters();
         setClusters(data.data);
       } catch (e) {
         console.error("error kwa fetch in context:", e.message);
