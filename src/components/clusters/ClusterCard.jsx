@@ -37,7 +37,7 @@ export default function ClusterCard({ cluster }) {
           >
             ⌄
           </span>
-          <span>{isOpen ? "collapse" : "show articles"}</span>
+          <span>{isOpen ? "collapse" : `show articles (${cluster.articles.length})`}</span>
         </div>
       </button>
 

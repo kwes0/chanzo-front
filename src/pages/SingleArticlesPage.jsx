@@ -4,7 +4,7 @@ import { useNews } from "../hooks/NewsContext";
 
 export default function SingleArticlesPage() {
   const { clusters } = useNews();
-  // const kenyaTime = new Date().toLocaleString();
+  // const kenyaTime = new Date().toLocaleDateString("en-GB",{timezone: "Africa/Nairobi"})
   const singleArticleClusters = sortByDateDesc(
     clusters.filter((cluster) => cluster.articles.length === 1),
     (cluster) => cluster.articles[0]?.pubDate || cluster.updatedAt,
