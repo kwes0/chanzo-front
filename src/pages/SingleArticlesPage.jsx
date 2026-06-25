@@ -2,11 +2,39 @@ import { sortByDateDesc } from "../api/clustersApi";
 import SingleArticleCard from "../components/clusters/SingleArticleCard";
 import { useNews } from "../hooks/NewsContext";
 
+function toKenyaDateString(date) {
+  return date.toLocaleDateString("en-GB", { timeZone: "Africa/Nairobi" });
+}
+
 export default function SingleArticlesPage() {
   const { clusters } = useNews();
-  // const kenyaTime = new Date().toLocaleDateString("en-GB",{timezone: "Africa/Nairobi"})
-  const singleArticleClusters = sortByDateDesc(
-    clusters.filter((cluster) => cluster.articles.length === 1),
+  // const kenyaTime = new Date().toLocaleDateString("en-GB", {
+  //   timezone: "Africa/Nairobi",
+  // });
+  // // const singleArticleClusters = sortByDateDesc(
+  // //   clusters.filter((cluster) => cluster.articles.length === 1),
+  // //   (cluster) => cluster.articles[0]?.pubDate || cluster.updatedAt,
+  // // );
+
+  // const singleArticleClusters = clusters.filter(
+  //   (cluster) => cluster.articles.length === 1,
+  // );
+  // const todayArticlesOnly = sortByDateDesc(
+  //   singleArticleClusters.articles[0]?.pubDate.getDate() ===
+  //     kenyaTime.getDate(),
+  // );
+  const todayInKenya = toKenyaDateString(new Date());
+
+  const singleArticleClusters = clusters.filter(
+    (cluster) => cluster.articles.length === 1,
+  );
+
+  const todaysSingleArticleClusters = sortByDateDesc(
+    singleArticleClusters.filter((cluster) => {
+      const pubDate = cluster.articles[0]?.pubDate;
+      if (!pubDate) return false;
+      return toKenyaDateString(new Date(pubDate)) === todayInKenya;
+    }),
     (cluster) => cluster.articles[0]?.pubDate || cluster.updatedAt,
   );
 
@@ -17,12 +45,12 @@ export default function SingleArticlesPage() {
           Today's Article
         </h1>
         <div className="font-mono text-[9px] tracking-[0.04em] text-ink-4">
-          {singleArticleClusters.length} articles
+          {todaysSingleArticleClusters.length} articles
         </div>
       </div>
 
-      {singleArticleClusters.length > 0 ? (
-        singleArticleClusters.map((cluster) => (
+      {todaysSingleArticleClusters.length > 0 ? (
+        todaysSingleArticleClusters.map((cluster) => (
           <SingleArticleCard cluster={cluster} key={cluster.id} />
         ))
       ) : (
