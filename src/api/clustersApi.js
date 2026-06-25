@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:3003";
+const localserver = import.meta.env.VITE_LOCAL_URL;
+const remoteserver = import.meta.env.VITE_SERVER_URL;
+const baseUrl = localserver || remoteserver;
 
 // const clusters = async () => {
 //   const allClusteredURL = `${baseUrl}/ropie/allClustered`;
