@@ -19,9 +19,6 @@ export default function SingleArticleCard({ cluster }) {
           </h2>
         </a>
 
-        {/* <p className="max-w-[720px] text-[13px] leading-relaxed text-ink-3">
-          {article.summary || 'No summary available for this article yet.'}
-        </p> */}
 
         <div className="mt-3 flex flex-wrap gap-2 font-mono text-[8.5px] uppercase tracking-[0.05em] text-ink-4">
           <span>Source: {article.sourceName || "Unknown"}</span>
@@ -34,13 +31,7 @@ export default function SingleArticleCard({ cluster }) {
               minute: "2-digit",
             })}
           </span>
-          {/* <a
-            className="text-blue hover:underline"
-            href={article.link}
-            target="_blank"
-          >
-            Open article ↗
-          </a> */}
+          
         </div>
       </div>
     </article>

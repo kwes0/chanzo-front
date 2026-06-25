@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -88,4 +88,9 @@ a {
 ::-webkit-scrollbar-thumb {
   background: #d5cfc4;
   border-radius: 2px;
+}
+
+.emoji-protect {
+  -webkit-text-fill-color: initial;
+  background: none;
 }

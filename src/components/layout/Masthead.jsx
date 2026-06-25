@@ -38,10 +38,6 @@ export default function Masthead() {
             <br />
             Nairobi, Kenya
           </div>
-          {/* <div className="inline-flex items-center gap-1.5 self-start rounded-[2px] bg-blue px-2 py-0.5 font-mono text-[7px] font-medium uppercase tracking-[0.12em] text-blue-pale md:self-auto md:text-[8px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-pale" />
-            Kenya Edition
-          </div> */}
         </div>
         {/* Active tab toggle */}
         <div className="grid-in-tabs flex items-center justify-end px-3.5 py-2.5 md:border-l md:border-rule md:px-5 md:py-0">

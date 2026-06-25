@@ -8,21 +8,7 @@ function toKenyaDateString(date) {
 
 export default function SingleArticlesPage() {
   const { clusters } = useNews();
-  // const kenyaTime = new Date().toLocaleDateString("en-GB", {
-  //   timezone: "Africa/Nairobi",
-  // });
-  // // const singleArticleClusters = sortByDateDesc(
-  // //   clusters.filter((cluster) => cluster.articles.length === 1),
-  // //   (cluster) => cluster.articles[0]?.pubDate || cluster.updatedAt,
-  // // );
 
-  // const singleArticleClusters = clusters.filter(
-  //   (cluster) => cluster.articles.length === 1,
-  // );
-  // const todayArticlesOnly = sortByDateDesc(
-  //   singleArticleClusters.articles[0]?.pubDate.getDate() ===
-  //     kenyaTime.getDate(),
-  // );
   const todayInKenya = toKenyaDateString(new Date());
 
   const singleArticleClusters = clusters.filter(
