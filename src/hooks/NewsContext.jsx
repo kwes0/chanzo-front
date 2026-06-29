@@ -8,14 +8,18 @@ export function NewsProvider({ children }) {
   const [activeView, setActiveView] = useState("clusters");
   const [openClusterIds, setOpenClusterIds] = useState(() => new Set());
   const [clusters, setClusters] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
+      setIsLoading(true);
       try {
         const data = await getThisWeeksClusters();
         setClusters(data.data);
       } catch (e) {
         console.error("error kwa fetch in context:", e.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetch();
@@ -36,6 +40,7 @@ export function NewsProvider({ children }) {
     clusters,
     openClusterIds,
     toggleCluster,
+    isLoading,
   };
 
   return <NewsContext.Provider value={value}>{children}</NewsContext.Provider>;

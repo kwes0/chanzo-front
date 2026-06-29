@@ -1,9 +1,10 @@
 import { sortByDateDesc } from "../api/clustersApi";
 import ClusterCard from "../components/clusters/ClusterCard";
+import LoadingIcon from "../components/layout/LoadingIcon";
 import { useNews } from "../hooks/NewsContext";
 
 export default function ClustersPage() {
-  const { clusters } = useNews();
+  const { clusters, isLoading } = useNews();
   const multiArticleClusters = sortByDateDesc(
     clusters.filter((cluster) => cluster.articles.length > 1),
     (cluster) => cluster.updatedAt,
@@ -17,12 +18,18 @@ export default function ClustersPage() {
         unit="clusters"
       />
 
-      {multiArticleClusters.length > 0 ? (
-        multiArticleClusters.map((cluster) => (
-          <ClusterCard cluster={cluster} key={cluster.id} />
-        ))
+      {isLoading ? (
+        <LoadingIcon />
       ) : (
-        <EmptyState>No multi-article clusters yet</EmptyState>
+        <>
+          {multiArticleClusters.length > 0 ? (
+            multiArticleClusters.map((cluster) => (
+              <ClusterCard cluster={cluster} key={cluster.id} />
+            ))
+          ) : (
+            <EmptyState>No multi-article clusters yet</EmptyState>
+          )}
+        </>
       )}
     </main>
   );
@@ -33,7 +40,7 @@ function PageHeader({ count, title, unit }) {
     <div className="flex flex-col items-start justify-between gap-1 border-b border-rule px-4 py-3 md:flex-row md:items-baseline md:px-5">
       <h1 className="font-display text-lg font-semibold text-ink">{title}</h1>
       <div className="font-mono text-[9px] tracking-[0.04em] text-ink-4">
-        {count} {unit} 
+        {count} {unit}
       </div>
     </div>
   );

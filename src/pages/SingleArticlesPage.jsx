@@ -1,5 +1,6 @@
 import { sortByDateDesc } from "../api/clustersApi";
 import SingleArticleCard from "../components/clusters/SingleArticleCard";
+import LoadingIcon from "../components/layout/LoadingIcon";
 import { useNews } from "../hooks/NewsContext";
 
 function toKenyaDateString(date) {
@@ -7,7 +8,7 @@ function toKenyaDateString(date) {
 }
 
 export default function SingleArticlesPage() {
-  const { clusters } = useNews();
+  const { clusters, isLoading } = useNews();
 
   const todayInKenya = toKenyaDateString(new Date());
 
@@ -35,14 +36,20 @@ export default function SingleArticlesPage() {
         </div>
       </div>
 
-      {todaysSingleArticleClusters.length > 0 ? (
-        todaysSingleArticleClusters.map((cluster) => (
-          <SingleArticleCard cluster={cluster} key={cluster.id} />
-        ))
+      {isLoading ? (
+        <LoadingIcon />
       ) : (
-        <div className="px-5 py-9 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-4">
-          No single article clusters yet
-        </div>
+        <>
+          {todaysSingleArticleClusters.length > 0 ? (
+            todaysSingleArticleClusters.map((cluster) => (
+              <SingleArticleCard cluster={cluster} key={cluster.id} />
+            ))
+          ) : (
+            <div className="px-5 py-9 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-4">
+              No single article clusters yet
+            </div>
+          )}
+        </>
       )}
     </main>
   );

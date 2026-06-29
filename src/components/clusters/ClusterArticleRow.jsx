@@ -8,13 +8,13 @@ export default function ClusterArticleRow({ article }) {
       <span className="w-fit rounded-[2px] border border-rule-2 bg-cream-3 px-2 py-0.5 text-center font-mono text-[8px] font-medium uppercase tracking-[0.06em] text-ink-2">
         {article.sourceName || "Source"}
       </span>
-      <span className="text-[12.5px] leading-snug text-ink-2">
+      <span className="text-[14px] font-display leading-snug text-ink-2">
         {article.title}
       </span>
       <span className="font-mono text-[8.5px] text-ink-4 sm:text-right">
         {formatRelativeDate(article.pubDate)}
       </span>
-      <span className="text-ink-4 emoji-protect">↗</span>
+      {/* <span className="text-ink-4 emoji-protect">↗</span> */}
     </a>
   );
 }
