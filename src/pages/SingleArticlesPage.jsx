@@ -29,7 +29,7 @@ export default function SingleArticlesPage() {
     <main className="mx-auto max-w-[980px] border-x border-rule bg-cream">
       <div className="flex flex-col items-start justify-between gap-1 border-b border-rule px-4 py-3 md:flex-row md:items-baseline md:px-5">
         <h1 className="font-display text-lg font-semibold text-ink">
-          Today's Article
+          Today's Articles
         </h1>
         <div className="font-mono text-[9px] tracking-[0.04em] text-ink-4">
           {todaysSingleArticleClusters.length} articles

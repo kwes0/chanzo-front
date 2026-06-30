@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { useNews } from "../../hooks/NewsContext";
 
 const tabs = [
-  { id: "clusters", label: "Clustered Articles" },
-  { id: "singleArticles", label: "Single Articles" },
+  { id: "clusters", label: "Week's Clusters" },
+  { id: "singleArticles", label: "Articles Today" },
 ];
 
 export default function Masthead() {
