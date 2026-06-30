@@ -20,13 +20,9 @@ export default function ClusterCard({ cluster }) {
         <div className="mb-1.5 flex flex-wrap items-center gap-2 font-mono text-[8.5px] tracking-[0.04em] text-ink-4">
           <span>{getSourceSummary(cluster)}</span>
           <span className="text-rule-2">.</span>
-          <span>
-            created {formatRelativeDate(cluster.createdAt)}
-          </span>
+          <span>created {formatRelativeDate(cluster.createdAt)}</span>
           <span className="text-rule-2">-</span>
-          <span>
-            updated {formatRelativeDate(cluster.updatedAt)}
-          </span>
+          <span>updated {formatRelativeDate(articles[0].pubDate)}</span>
         </div>
         <h2 className="mb-2.5 font-display text-xl font-semibold leading-tight tracking-normal text-ink md:text-[23px]">
           {cluster.title}
@@ -37,7 +33,9 @@ export default function ClusterCard({ cluster }) {
           >
             ⌄
           </span>
-          <span>{isOpen ? "collapse" : `show articles (${cluster.articles.length})`}</span>
+          <span>
+            {isOpen ? "collapse" : `show articles (${cluster.articles.length})`}
+          </span>
         </div>
       </button>
 
